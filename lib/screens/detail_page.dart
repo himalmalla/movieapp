@@ -42,7 +42,7 @@ class DetailPage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         textStyle: const TextStyle(fontWeight: FontWeight.bold),
                         padding: const EdgeInsets.all(15.0),
-                        primary: Colors.white,
+                        primary: Colors.green,
                         fixedSize:
                             Size(MediaQuery.of(context).size.width * 0.425, 65),
                         shape: RoundedRectangleBorder(

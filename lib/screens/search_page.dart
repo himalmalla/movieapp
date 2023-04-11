@@ -15,6 +15,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0xfff354249),
           body: Consumer(
             builder: (context, ref, _) {
               final data = ref.watch(searchProvider);

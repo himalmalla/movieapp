@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:newmovieapp/screens/search_page.dart';
 import '../common_widgets/tab_bar_widget.dart';
@@ -9,10 +10,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade300,
+        backgroundColor: Color(0xfff354249),
         appBar: AppBar(
           centerTitle: false,
           backgroundColor: Colors.transparent,
@@ -21,7 +23,7 @@ class HomePage extends StatelessWidget {
           title: const Text(
             'Watch Now',
             style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
           ),
           actions: [
             IconButton(
@@ -32,7 +34,7 @@ class HomePage extends StatelessWidget {
                 padding: EdgeInsets.only(right: 12.0),
                 child: Icon(
                   Icons.search,
-                  color: Colors.black,
+                  color: Colors.white,
                   size: 35,
                 ),
               ),
@@ -40,7 +42,7 @@ class HomePage extends StatelessWidget {
           ],
           bottom: TabBar(
             isScrollable: true,
-            labelColor: Colors.black,
+            labelColor: Colors.white,
             indicatorColor: Colors.red,
             tabs: [
               Tab(text: CategoryType.Now_Playing.name),

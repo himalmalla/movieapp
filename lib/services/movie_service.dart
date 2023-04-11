@@ -16,6 +16,8 @@ class MovieService {
   final Dio dio;
   MovieService(this.dio);
 
+  final box = Hive.box<String>('movie');
+
   Future<Either<String, List<Movie>>> getData(
       {required String apiPath, required int page}) async {
     try {
@@ -23,26 +25,33 @@ class MovieService {
           .get(apiPath, queryParameters: {'api_key': Api.apiKey, 'page': page});
 
 
-      if (apiPath == Api.popularMovie){
+      if (apiPath == Api.nowPlaying){
         final res = await dio.get(apiPath,
-            queryParameters: {'api_key': Api.apiKey,
-              'page': page});
+            queryParameters: {
+          'api_key': Api.apiKey,
+              'page': 1});
 
-        final box = Hive.box<String>('movie');
-        box.put('popular', jsonEncode(Response.data['results']));
+        box.put('Now_Playing', jsonEncode(res.data['results']));
 
       }
 
 
 
-      final extractData = (Response.data['results'] as List)
-          .map((e) => Movie.fromJson(e))
-          .toList();
+      final extractData = (Response.data['results'] as List).map((e) => Movie.fromJson(e)).toList();
       return Right(extractData);
+
     } on DioError catch (err, stack) {
-      return Left(err.toString());
+      if(box.isNotEmpty && apiPath == Api.nowPlaying){
+      final data = jsonDecode(box.get('Now_Playing')!);
+      final extractData = (data as List).map((e) => Movie.fromJson(e)).toList();
+      return Right(extractData);
+      }else {
+        return Left(DioException().getDioError(err));
+      }
+
     }
   }
+
 
   Future<Either<String, List<Movie>>> searchMovie(String q) async {
     try {
@@ -55,7 +64,7 @@ class MovieService {
           );
 
       if((Response.data['results'] as List).isEmpty){
-        return Left('No movies found try another keyword');
+        return const Left('No movies found try another keyword', );
       }else{
         final extractData = (Response.data['results'] as List).map((e) => Movie.fromJson(e)).toList();
         return Right(extractData);

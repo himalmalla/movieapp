@@ -6,6 +6,7 @@ import 'package:newmovieapp/screens/homepage.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Future.delayed(Duration(milliseconds: 500));
 
   await Hive.initFlutter();
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Movie Application',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.green,
       ),
       home: const HomePage(),
     );

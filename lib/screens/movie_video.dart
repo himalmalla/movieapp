@@ -13,7 +13,7 @@ class MovieVideo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Color(0xfff354249),
         body: Consumer(
             builder: (context, ref, child) {
       final videoData = ref.watch(videoProvider(movie.id));
