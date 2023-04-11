@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:newmovieapp/screens/homepage.dart';
 
-void main() {
-  runApp(ProviderScope(child: const MyApp()));
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+
+  await Hive.openBox<String>('movie');
+
+
+  runApp(
+      const ProviderScope(
+          child: MyApp()
+      ));
 }
 
 class MyApp extends StatelessWidget {
