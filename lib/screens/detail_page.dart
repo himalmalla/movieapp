@@ -134,7 +134,7 @@ class DetailPage extends StatelessWidget {
                   gradient: LinearGradient(
                       colors: [
                         Colors.transparent,
-                        Color(0xff000B49),
+                        Color(0xfff283035),
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,

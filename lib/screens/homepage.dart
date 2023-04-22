@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        backgroundColor: Color(0xfff354249),
+        backgroundColor: Color(0xfff283035),
         appBar: AppBar(
           centerTitle: false,
           backgroundColor: Colors.transparent,
